@@ -15,6 +15,8 @@ tol = 0.1;
 l_cuv = 12;
 w_cuv = 12;
 h_cuv = 30;
+dist_cuv = 1;
+
 
 l_therm = 3-tol;
 h_therm = 20;
@@ -24,10 +26,14 @@ l_holder = 20;
 w_holder = 20;
 h_holder = 20;
 l_frame = 3;
+l_pin = 2;
 
 
-h_open = 15;
-z_open = 2;
+h_open = 8;
+z_open = 10;
+h_open2 = 8;
+
+
 
 IM_offset = 0.2;
 
@@ -39,9 +45,17 @@ module insert() {
     
     difference() {
     translate([-l_holder/2,-w_holder/2,h/2]) {cube([l_holder, w_holder, h_holder]); }
-    translate([-tol-l_cuv/2,-w_cuv/2,h/2]) {cube([l_cuv+2*tol, w_cuv+2*tol, h_cuv+2*tol]); }
-    translate([-tol-l_holder/2,-w_cuv/2,h/2+z_open]) {cube([l_holder+2*tol, w_cuv+2*tol, h_open]); }
-    translate([-l_cuv/2,-w_holder/2-tol,h/2+z_open]) {cube([l_cuv+2*tol, w_holder+2*tol, h_open]); }
+    translate([-tol-l_cuv/2,-tol-w_cuv/2,h/2]) {cube([l_cuv+2*tol, w_cuv+2*tol, h_cuv+2*tol]); }
+    translate([-dist_cuv-l_holder/2,-dist_cuv-w_cuv/2,h/2+z_open]) {cube([l_holder+2*dist_cuv, w_cuv+2*dist_cuv, h_open]); }
+    translate([-dist_cuv-l_cuv/2,-w_holder/2-dist_cuv,h/2+z_open]) {cube([l_cuv+2*dist_cuv, w_holder+2*dist_cuv, h_open]); }
+
+    translate([-dist_cuv-l_holder/2,-dist_cuv-w_cuv/2,h/2]) {cube([l_holder+2*dist_cuv, w_cuv+2*dist_cuv, h_open2]); }
+    translate([-dist_cuv-l_cuv/2,-w_holder/2-dist_cuv,h/2]) {cube([l_cuv+2*dist_cuv, w_holder+2*dist_cuv, h_open2]); }
+
+    
+    translate([-dist_cuv-l_holder/2,l_pin-w_cuv/2,h/2]) {cube([l_holder+2*dist_cuv, w_cuv-2*l_pin, h_holder+tol]); }
+    translate([l_pin-l_cuv/2,-dist_cuv-w_holder/2,h/2]) {cube([l_cuv-2*l_pin, w_holder+dist_cuv*2, h_holder+tol]); }
+    
     
     }
 
