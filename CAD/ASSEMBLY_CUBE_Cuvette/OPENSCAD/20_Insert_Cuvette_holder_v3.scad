@@ -89,7 +89,7 @@ module insert() {
     
     difference() {
     translate([-l_holder/2,-w_holder/2,h/2]) {cube([l_holder, w_holder, h_holder]); }
-    translate([0,0,h/2]) {trunc_pyramid(l_cuv+2*dist_cuv, w_cuv+2*dist_cuv, l_cuv+2*tol, w_cuv+2*tol, h_cuv+2*tol); }
+    translate([0,0,h/2]) {trunc_pyramid(l_cuv+2*dist_cuv, w_cuv+2*dist_cuv, l_cuv+2*tol, w_cuv+2*tol, h_holder-h_top+tol); }
   
 
 
