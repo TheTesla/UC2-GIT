@@ -43,6 +43,15 @@ h_top = h_holder-h_open;
 
 IM_offset = 0.2;
 
+tec_tol = 0.2;
+l_tec1 = 15 + tec_tol;
+w_tec1 = 3.7 + tec_tol;
+h_tec1 = 18 + tec_tol;
+x_tec2 = 2.5 + tec_tol;
+z_tec2 = 4.5 + tec_tol;
+l_tec2 = 10 + tec_tol;
+w_tec2 = 2.6 - tec_tol;
+h_tec2 = 12 + tec_tol;
 
 
 insert();
@@ -91,7 +100,7 @@ module trunc_pyramid(la, wa, lb, wb, h) {
 
 
 module insert() {
-    translate([-l_cuv/2,-w_cuv/2,h/2]) {%cube([l_cuv, w_cuv, h_cuv]); }
+    //translate([-l_cuv/2,-w_cuv/2,h/2]) {%cube([l_cuv, w_cuv, h_cuv]); }
 
     
     translate([l_holder/2-0.01,0,b/2-h/2]) {
@@ -168,8 +177,15 @@ module insert() {
                 }
            }
     
-        
-        
+        translate([-l_tec1/2,-w_cuv/2-w_tec1-w_tec2,0]) {
+            cube([l_tec1, w_tec1, h_tec1]);
+            translate([0,0,-c+0.01]) {
+                cube([w_tec1, w_tec1, c+0.02]);
+                translate([l_tec1-w_tec1,0,0]) cube([w_tec1, w_tec1, c+0.02]);
+            }
+
+            translate([x_tec2, w_tec1-0.01, z_tec2]) cube([l_tec2, w_tec2+0.01, h_tec2]);
+        }
         }
 }
 
