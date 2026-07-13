@@ -31,7 +31,7 @@ l_pin = 2;
 l_lum = 7.5;
 r_lum = 30.5/2;
 r_lum_in = w_cuv/2;
-l_lum_in = 5;
+l_lum_in = l_lum - 5.5;
 twt = 2;
 
 h_open = 18;
@@ -43,15 +43,24 @@ h_top = h_holder-h_open;
 
 IM_offset = 0.2;
 
-tec_tol = 0.2;
+tec_tol = 0.7;
 l_tec1 = 15 + tec_tol;
 w_tec1 = 3.7 + tec_tol;
 h_tec1 = 18 + tec_tol;
-x_tec2 = 2.5 + tec_tol;
-z_tec2 = 4.5 + tec_tol;
+x_tec2 = 2.5;
+z_tec2 = 4.5;
 l_tec2 = 10 + tec_tol;
 w_tec2 = 2.6 - tec_tol;
 h_tec2 = 12 + tec_tol;
+
+wc_tol = 0.5;
+r_wc = (3 + wc_tol)/2;
+x_wc = 6;
+y_wc = 16.1;
+
+r_wc2 = (5 + wc_tol)/2;
+x_wc2 = 12;
+y_wc2 = 13;
 
 
 insert();
@@ -160,10 +169,8 @@ module insert() {
 
         
         
-        
-        translate([a/2-l_lum-0.01,0,b/2-h/2]) {
-            //translate([0,0,r_lum]) rotate([-60,0,0])cube([l_lum+0.02,0.5,3*(b-2*r_lum)]);
-              
+        // Luminometer openings
+        translate([a/2-l_lum-0.01,0,b/2-h/2]) {  
             rotate(a=[0,90,0]) {
                 cylinder(h=l_lum+0.02, r=r_lum);
                 translate([0,0,-a/2+l_lum]) cylinder(h=a/2+0.02, r=r_lum_in);
@@ -177,6 +184,7 @@ module insert() {
                 }
            }
     
+        // Peltier pocket
         translate([-l_tec1/2,-w_cuv/2-w_tec1-w_tec2,0]) {
             cube([l_tec1, w_tec1, h_tec1]);
             translate([0,0,-c+0.01]) {
@@ -186,7 +194,17 @@ module insert() {
 
             translate([x_tec2, w_tec1-0.01, z_tec2]) cube([l_tec2, w_tec2+0.01, h_tec2]);
         }
+        
+        // Water cooler holes
+        translate([0,-y_wc,-c/2-0.01]) cylinder(r=r_wc, h=c+0.02);
+        translate([x_wc,-y_wc,-c/2-0.01]) cylinder(r=r_wc, h=c+0.02);
+        translate([-x_wc,-y_wc,-c/2-0.01]) cylinder(r=r_wc, h=c+0.02);
+        
+        translate([x_wc2,-y_wc2,-c/2-0.01]) cylinder(r=r_wc2, h=c+0.02);
+        translate([-x_wc2,-y_wc2,-c/2-0.01]) cylinder(r=r_wc2, h=c+0.02);
+
         }
+
 }
 
 
