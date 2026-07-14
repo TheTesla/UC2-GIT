@@ -31,7 +31,7 @@ l_pin = 2;
 l_lum = 7.5;
 r_lum = 30.5/2;
 r_lum_in = w_cuv/4;
-l_lum_in = l_lum - 5.5;
+l_lum_in = 0;
 twt = 2;
 
 h_open = 18;
@@ -49,12 +49,12 @@ tec_tol = 0.7;
 l_tec1 = 15 + tec_tol;
 w_tec1 = 3.7 + tec_tol + w_wc2;
 w_tec1_conn = 3;
-h_tec1 = 18 + tec_tol;
+h_tec1 = 18 + tec_tol+1;
 x_tec2 = 2.5;
 z_tec2 = 4.5;
 l_tec2 = 10 + tec_tol;
 w_tec2 = 2.6 - tec_tol;
-h_tec2 = 12 + tec_tol;
+h_tec2 = 12 + tec_tol+1;
 z_tec = -1.5;
 
 wc_tol = 0.5;
