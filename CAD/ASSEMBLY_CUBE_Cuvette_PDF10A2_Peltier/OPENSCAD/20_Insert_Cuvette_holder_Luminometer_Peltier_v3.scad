@@ -30,7 +30,7 @@ l_pin = 2;
 
 l_lum = 7.5;
 r_lum = 30.5/2;
-r_lum_in = w_cuv/2;
+r_lum_in = w_cuv/4;
 l_lum_in = l_lum - 5.5;
 twt = 2;
 
@@ -43,24 +43,33 @@ h_top = h_holder-h_open;
 
 IM_offset = 0.2;
 
+w_wc2 = 3;
+
 tec_tol = 0.7;
 l_tec1 = 15 + tec_tol;
-w_tec1 = 3.7 + tec_tol;
+w_tec1 = 3.7 + tec_tol + w_wc2;
+w_tec1_conn = 3;
 h_tec1 = 18 + tec_tol;
 x_tec2 = 2.5;
 z_tec2 = 4.5;
 l_tec2 = 10 + tec_tol;
 w_tec2 = 2.6 - tec_tol;
 h_tec2 = 12 + tec_tol;
+z_tec = -1.5;
 
 wc_tol = 0.5;
 r_wc = (3 + wc_tol)/2;
 x_wc = 6;
-y_wc = 16.1;
+y_wc = -(-w_cuv/2-w_tec1-w_tec2);
 
 r_wc2 = (5 + wc_tol)/2;
 x_wc2 = 12;
 y_wc2 = 13;
+
+w_wc_clmp = 3;
+y_wc_clmp = y_wc+r_wc+2;
+h_wc_clmp = h_tec1/2; 
+r_wc_clmp = 3;
 
 
 insert();
@@ -150,6 +159,10 @@ module insert() {
                     translate([0,b,0]) rotate([-prss_angl,0,0]) translate([0,-b/2,0]) cube([l_lum, b/2, b]);
                 };
 
+        translate([-l_tec1/2,-w_wc_clmp-y_wc_clmp,0]) {
+            cube([l_tec1, w_wc_clmp, h_wc_clmp]);
+            translate([0,r_wc_clmp,h_wc_clmp]) rotate([0,90,0]) cylinder(h=l_tec1,r=r_wc_clmp);
+            }
 
             }
         
@@ -185,11 +198,12 @@ module insert() {
            }
     
         // Peltier pocket
-        translate([-l_tec1/2,-w_cuv/2-w_tec1-w_tec2,0]) {
+        translate([-l_tec1/2,-w_cuv/2-w_tec1-w_tec2,z_tec]) {
             cube([l_tec1, w_tec1, h_tec1]);
+            translate([-x_wc2+l_tec1/2,0,0]) cube([x_wc2*2, w_wc2, h_tec1]);
             translate([0,0,-c+0.01]) {
-                cube([w_tec1, w_tec1, c+0.02]);
-                translate([l_tec1-w_tec1,0,0]) cube([w_tec1, w_tec1, c+0.02]);
+                cube([w_tec1_conn, w_tec1, c+0.02]);
+                translate([l_tec1-w_tec1_conn,0,0]) cube([w_tec1_conn, w_tec1, c+0.02]);
             }
 
             translate([x_tec2, w_tec1-0.01, z_tec2]) cube([l_tec2, w_tec2+0.01, h_tec2]);
