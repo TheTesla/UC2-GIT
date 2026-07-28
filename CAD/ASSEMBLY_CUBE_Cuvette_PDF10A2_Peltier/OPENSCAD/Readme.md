@@ -1,4 +1,4 @@
-# UC2 - cage system compatibility  
+# UC2 - Luminescence Chemistry  
 Establishing an open standard in lab equipment for optics involves bridging to commercially available devices like the _Thorlabs PDF10A2_ luminometer. With the following inserts and cubes, you should be able to combine our components with the ones frequently used in optical setups.  
 
 ## Insert an integrated luminescence chemistry component into the UC2 cube
