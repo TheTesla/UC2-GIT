@@ -1,5 +1,5 @@
 # Luminescence Chemistry Insert Cube
-This is the repository for the Insert which adapts the UC2 System to the Thorlabs-Cube-System World.
+This is the repository for the Insert which adapts the UC2 System for luminescence chemistry analyzation.
 
 The model is designed using _OpenSCAD_. You can export the STL files from this software.
 
@@ -28,20 +28,20 @@ The Cube consists of the following components.
 
 #### Default:
 * **3DP Cube** which houses the insert and adapts it into a UC2 setup.
-* **The Thorlabs Insert** which adapts to any 1 inch cage system component ([UC2_v3_20_Cube_Insert_Thorlabs.stl](../RAW/STL))
-
-#### Alternatives:
-* **3DP Cube** which will be screwed to the Lid. Here all the functions (i.e. Mirrors, LED's etc.) find their place ([10_Cube_1x1_v3.stl](../RAW/STL)) and **3DP Lid** which closes the Cube ([10_Lid_1x1_v3.stl](../RAW/STL)) - find the details in [ASSEMBLY_CUBE_Base](../ASSEMBLY_CUBE_Base)
-* Check out the [OPENSCAD](./OPENSCAD) folder for other alternatives to connect the UC2 framework with a cage system
+* **The Luminescence Chemistry Insert** which holds a cuvette, the _Thorlabs PDF10A2_ and a Peltier cooler.
 
 
 ### <img src="./IMAGES/B.png" height="40"> Additional parts
-* Check out the [RESOURCES](../../TUTORIALS/RESOURCES) for more information!
-* Thorlabs Cage System Component
+* Check out the [RESOURCES for Luminescence for Chemistry](../../TUTORIALS/RESOURCES/Resources_Luminescence_Chemistry.md) for more information!
+* Cuvette
+* _Thorlabs PDF10A2_ luminometer
+* _Thorlabs TECD2_ peltier element
+* water cooler for the peltier element
+* magnetic stirrer
 
 
 ## <img src="./IMAGES/A.png" height="40"> Assembly
-* Mount the Cage component inside the insert
+* Mount the peltier element and the water cooler in the Insert, add the luminometer
 * Put the Insert inside the Cube
 * Close the cube accordingly (IM/3DP)
 * Done!
