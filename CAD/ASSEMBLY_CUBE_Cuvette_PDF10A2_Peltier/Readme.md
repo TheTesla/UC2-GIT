@@ -54,7 +54,7 @@ The Cube consists of the following components.
 <img src="./IMAGES/CUBE_THORLABS_0.jpg" width="300">
 </p>
 
-2. Put the cage mount inside the insert
+2. Put the insert inside the insert
 <p align="center">
 <img src="./IMAGES/CUBE_THORLABS_1.jpg" width="300">
 </p>
