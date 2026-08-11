@@ -218,7 +218,7 @@ module insert() {
         translate([-x_wc2,-y_wc2,-c/2-0.01]) cylinder(r=r_wc2, h=c+0.02);
         
         // Stirrer Pocket
-        translate([-12.2/2,-12.4/2,-h/2-0.01]) cube([12.2,12.4,0.5]);
+        //translate([-12.2/2,-12.4/2,-h/2-0.01]) cube([12.2,12.4,0.5]);
 
         }
         
