@@ -28,10 +28,16 @@ h_holder = 30;
 l_frame = 3;
 l_pin = 2;
 
-l_lum = 7.5;
+l_lum = 7.5+1.5;
 r_lum = 30.5/2;
 r_lum_in = w_cuv/4;
 l_lum_in = 0;
+l_wall_lum = 0;
+l_stand_lum = 0.8;
+xo_stand_lum = l_stand_lum;
+l_stab_lum = 1; // support 
+w_stab_lum = 2;
+
 twt = 2;
 
 h_open = 18;
@@ -46,6 +52,7 @@ IM_offset = 0.2;
 w_wc2 = 3;
 
 tec_tol = 0.7;
+tec2w_tol = 0;
 l_tec1 = 15 + tec_tol;
 w_tec1 = 3.7 + tec_tol + w_wc2;
 w_tec1_conn = 3;
@@ -53,7 +60,7 @@ h_tec1 = 18 + tec_tol+1;
 x_tec2 = 2.5;
 z_tec2 = 4.5;
 l_tec2 = 10 + tec_tol;
-w_tec2 = 2.6 - tec_tol;
+w_tec2 = 2.6 - tec2w_tol;
 h_tec2 = 12 + tec_tol+1;
 z_tec = -1.5;
 
@@ -125,7 +132,7 @@ module insert() {
         rotate(a=[0,90,0]) {
             difference() {
                 union(){
-                    translate([0,-r_lum_in,0]) cube([b/2,r_lum_in*2,a/2-l_holder/2-l_lum]);
+                    translate([0,-r_lum_in-twt,a/2-l_holder/2-l_lum-l_stand_lum+xo_stand_lum]) cube([b/2,(r_lum_in+twt)*2,l_stand_lum]);
                     cylinder(h=(a/2-l_holder/2-l_lum_in), r=r_lum_in+twt);
                 }
                 translate([0,0,-0.01])cylinder(h=a/2+0.02, r=r_lum_in);
@@ -149,7 +156,7 @@ module insert() {
                 }
                 
                 // Cuvette holder
-                translate([-l_holder/2,-w_holder/2,h/2]) {cube([l_holder, w_holder, h_holder]); }
+               translate([-l_holder/2,-w_holder/2,h/2]) {cube([l_holder, w_holder, h_holder]); }
 
                 // Luminometer holder
                 translate([a/2-l_lum,-b/2,-h/2]) { 
@@ -185,7 +192,10 @@ module insert() {
         // Luminometer openings
         translate([a/2-l_lum-0.01,0,b/2-h/2]) {  
             rotate(a=[0,90,0]) {
-                cylinder(h=l_lum+0.02, r=r_lum);
+                translate([0,0,l_wall_lum]) difference(){               cylinder(h=l_lum+0.02, r=r_lum);
+                   translate([-r_lum,-r_lum,0])cube([2*r_lum,w_stab_lum,l_stab_lum]);
+                   translate([-r_lum,r_lum-w_stab_lum,0])cube([2*r_lum,w_stab_lum,l_stab_lum]);
+                }            
                 translate([0,0,-a/2+l_lum]) cylinder(h=a/2+0.02, r=r_lum_in);
                 translate([-(b-(b-2*r_lum)/2)/2,0,0]){
                 difference(){
@@ -193,7 +203,8 @@ module insert() {
                      cylinder(r=(b-2*r_lum)/4, h=l_lum+0.02);
                      translate([-b/2,0,0]) cube([b,b,l_lum]);
                      
-                }}
+                }
+                }
                 }
            }
     
