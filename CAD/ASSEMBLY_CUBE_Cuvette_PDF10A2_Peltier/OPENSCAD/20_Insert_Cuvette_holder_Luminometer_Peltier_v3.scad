@@ -18,6 +18,12 @@ h_cuv = 45;
 dist_cuv = 1;
 z_cuv = -4;
 
+l_heatspreader = 12;
+w_heatspreader = 12+0.05;
+t_heatspreader = 0.4;
+xo_heatspreader = t_heatspreader;
+yo_heatspreader = t_heatspreader;
+
 l_therm = 3-tol;
 h_therm = 20;
 w_therm = 20;
@@ -189,7 +195,7 @@ module insert() {
         translate([0,0,h/2+h_holder-h_top]) {trunc_pyramid(l_cuv+2*tol, w_cuv+2*tol, l_cuv+2*dist_cuv, w_cuv+2*dist_cuv, h_top+tol);}
 
        // heat spreader
-      #translate([0,0,h/2+h_holder-h_top]) cube([5,5,5]);  
+      translate([xo_heatspreader-l_heatspreader+l_cuv/2,-yo_heatspreader-w_cuv/2,h/2+z_cuv]) {cube([l_heatspreader, w_heatspreader, h_cuv]); } 
         
         // Luminometer openings
         translate([a/2-l_lum-0.01,0,b/2-h/2]) {  
