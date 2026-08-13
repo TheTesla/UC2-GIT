@@ -49,13 +49,14 @@ h_top = h_holder-h_open;
 
 IM_offset = 0.2;
 
-w_wc2 = 3;
 
-tec_tol = 0.7;
+tec_tol = 0.8;
+w_wc2 = 3+2*tec_tol;
+
 tec2w_tol = 0;
 l_tec1 = 15 + tec_tol;
-w_tec1 = 3.7 + tec_tol + w_wc2;
-w_tec1_conn = 3;
+w_tec1 = 3.7 - tec_tol + w_wc2;
+w_tec1_conn = 3+1;
 h_tec1 = 18 + tec_tol+1;
 x_tec2 = 2.5;
 z_tec2 = 4.5;
@@ -65,7 +66,7 @@ h_tec2 = 12 + tec_tol+1;
 z_tec = -1.5;
 
 wc_tol = 0.5;
-r_wc = (3 + wc_tol)/2;
+r_wc = w_tec1_conn/2;
 x_wc = 6;
 y_wc = -(-w_cuv/2-w_tec1-w_tec2);
 
@@ -187,7 +188,8 @@ module insert() {
         
         translate([0,0,h/2+h_holder-h_top]) {trunc_pyramid(l_cuv+2*tol, w_cuv+2*tol, l_cuv+2*dist_cuv, w_cuv+2*dist_cuv, h_top+tol);}
 
-        
+       // heat spreader
+      #translate([0,0,h/2+h_holder-h_top]) cube([5,5,5]);  
         
         // Luminometer openings
         translate([a/2-l_lum-0.01,0,b/2-h/2]) {  
