@@ -64,7 +64,7 @@ IM_offset = 0.2;
 tec_tol = 0.8;
 w_wc2 = 3+2*tec_tol;
 
-tec2w_tol = 0;
+tec2w_tol = 0.5;
 l_tec1 = 15 + tec_tol;
 w_tec1 = 3.7 - tec_tol + w_wc2;
 w_tec1_conn = 3+1;
@@ -239,7 +239,7 @@ module insert() {
            }
     
         // Peltier pocket
-        translate([-l_tec1/2,-w_cuv/2-w_tec1-w_tec2,z_tec]) {
+        translate([-l_tec1/2,-t_heatspreader-w_cuv/2-w_tec1-w_tec2+0.01,z_tec]) {
             cube([l_tec1, w_tec1, h_tec1]);
             translate([-x_wc2+l_tec1/2,0,0]) cube([x_wc2*2, w_wc2, h_tec1]);
             translate([0,0,-c+0.01]) {
