@@ -38,7 +38,7 @@ l_frame = 3;
 l_pin = 2;
 
 l_lum = 7.5+1.5;
-r_lum = 30.5/2;
+r_lum = (30.5 - 0.5)/2;
 zo_lum = 1;
 w_gap_lum = 20;
 r_lum_in = w_cuv/4;
@@ -64,7 +64,7 @@ IM_offset = 0.2;
 tec_tol = 0.8;
 w_wc2 = 3+2*tec_tol;
 
-tec2w_tol = 0.5;
+tec2w_tol = 1.5;
 l_tec1 = 15 + tec_tol;
 w_tec1 = 3.7 - tec_tol + w_wc2;
 w_tec1_conn = 3+1;
@@ -79,7 +79,7 @@ z_tec = -1.5;
 wc_tol = 0.5;
 r_wc = w_tec1_conn/2;
 x_wc = 6;
-y_wc = -(-w_cuv/2-w_tec1-w_tec2);
+y_wc = -(-w_cuv/2-w_tec1-w_tec2-t_heatspreader);
 
 r_wc2 = (5 + wc_tol)/2;
 x_wc2 = 12;
